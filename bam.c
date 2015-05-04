@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.  */
 #include <ctype.h>
 #include <errno.h>
 #include "bam.h"
-#include "htslib/kstring.h"
+#include <kstring.h>
 #include "sam_header.h"
 
 char *bam_format1(const bam_header_t *header, const bam1_t *b)
@@ -64,6 +64,7 @@ int bam_validate1(const bam_header_t *header, const bam1_t *b)
 // FIXME: we should also check the LB tag associated with each alignment
 const char *bam_get_library(bam_header_t *h, const bam1_t *b)
 {
+    (void) h, (void) b;
 #if 0
     const uint8_t *rg;
     if (h->dict == 0) h->dict = sam_header_parse2(h->text);

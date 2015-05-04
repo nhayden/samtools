@@ -34,10 +34,10 @@ DEALINGS IN THE SOFTWARE.  */
 #define drand48() ((double)rand() / RAND_MAX)
 #endif
 
-#include "htslib/ksort.h"
+#include <ksort.h>
 KSORT_INIT_GENERIC(uint64_t)
 
-#include "htslib/kseq.h"
+#include <kseq.h>
 KSTREAM_INIT(gzFile, gzread, 8192)
 
 typedef struct {
@@ -46,7 +46,7 @@ typedef struct {
     int *idx;
 } bed_reglist_t;
 
-#include "htslib/khash.h"
+#include <khash.h>
 KHASH_MAP_INIT_STR(reg, bed_reglist_t)
 
 #define LIDX_SHIFT 13

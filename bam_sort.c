@@ -32,11 +32,11 @@ DEALINGS IN THE SOFTWARE.  */
 #include <regex.h>
 #include <time.h>
 #include <unistd.h>
-#include "htslib/ksort.h"
-#include "htslib/khash.h"
-#include "htslib/klist.h"
-#include "htslib/kstring.h"
-#include "htslib/sam.h"
+#include <ksort.h>
+#include <khash.h>
+#include <klist.h>
+#include <kstring.h>
+#include <sam.h>
 
 #if !defined(__DARWIN_C_LEVEL) || __DARWIN_C_LEVEL < 900000L
 #define NEED_MEMSET_PATTERN4
@@ -960,7 +960,7 @@ static int sort_blocks(int n_files, size_t k, bam1_p *buf, const char *prefix, c
     worker_t *w;
 
     if (n_threads < 1) n_threads = 1;
-    if (k < n_threads * 64) n_threads = 1; // use a single thread if we only sort a small batch of records
+    if (k < (size_t) n_threads * 64) n_threads = 1; // use a single thread if we only sort a small batch of records
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
     w = (worker_t*)calloc(n_threads, sizeof(worker_t));

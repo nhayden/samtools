@@ -38,7 +38,7 @@ Illumina.
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "htslib/bgzf.h"
+#include <bgzf.h>
 #include "bam.h"
 
 #define BUF_SIZE 0x10000

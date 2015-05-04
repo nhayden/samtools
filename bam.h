@@ -45,8 +45,8 @@ DEALINGS IN THE SOFTWARE.  */
 #include <string.h>
 #include <stdio.h>
 
-#include "htslib/bgzf.h"
-#include "htslib/sam.h"
+#include <bgzf.h>
+#include <sam.h>
 
 /*! @abstract BAM file handler */
 typedef BGZF *bamFile;

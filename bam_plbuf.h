@@ -25,7 +25,7 @@ DEALINGS IN THE SOFTWARE.  */
 #ifndef BAM_PLBUF_H
 #define BAM_PLBUF_H
 
-#include <htslib/sam.h>
+#include <sam.h>
 
 #ifndef BAM_PILEUP_F_DEFINED
 #define BAM_PILEUP_F_DEFINED

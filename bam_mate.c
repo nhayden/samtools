@@ -29,8 +29,8 @@ DEALINGS IN THE SOFTWARE.  */
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "htslib/kstring.h"
-#include "htslib/sam.h"
+#include <kstring.h>
+#include <sam.h>
 
 /*
  * This function calculates ct tag for two bams, it assumes they are from the same template and

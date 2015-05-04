@@ -31,10 +31,10 @@ DEALINGS IN THE SOFTWARE.  */
 #include <inttypes.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "htslib/sam.h"
-#include "htslib/faidx.h"
-#include "htslib/kstring.h"
-#include "htslib/khash.h"
+#include <sam.h>
+#include <faidx.h>
+#include <kstring.h>
+#include <khash.h>
 #include "samtools.h"
 KHASH_SET_INIT_STR(rg)
 

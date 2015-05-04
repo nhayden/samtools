@@ -31,10 +31,10 @@ DEALINGS IN THE SOFTWARE.  */
 #include <errno.h>
 #include <sys/stat.h>
 #include <getopt.h>
-#include <htslib/sam.h>
-#include <htslib/faidx.h>
-#include <htslib/kstring.h>
-#include <htslib/khash_str2int.h>
+#include <sam.h>
+#include <faidx.h>
+#include <kstring.h>
+#include <khash_str2int.h>
 #include "sam_header.h"
 #include "samtools.h"
 

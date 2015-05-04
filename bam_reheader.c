@@ -25,7 +25,7 @@ DEALINGS IN THE SOFTWARE.  */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "htslib/bgzf.h"
+#include <bgzf.h>
 #include "bam.h"
 
 #define BUF_SIZE 0x10000
@@ -33,12 +33,11 @@ DEALINGS IN THE SOFTWARE.  */
 int bam_reheader(BGZF *in, const bam_header_t *h, int fd)
 {
     BGZF *fp;
-    bam_header_t *old;
     ssize_t len;
     uint8_t *buf;
     if (in->is_write) return -1;
     buf = malloc(BUF_SIZE);
-    old = bam_header_read(in);
+    bam_header_read(in);
     fp = bgzf_fdopen(fd, "w");
     bam_header_write(fp, h);
     if (in->block_offset < in->block_length) {

@@ -26,7 +26,7 @@ DEALINGS IN THE SOFTWARE.  */
 #define BAM_LPILEUP_H
 
 
-#include <htslib/sam.h>
+#include <sam.h>
 
 struct __bam_lplbuf_t;
 typedef struct __bam_lplbuf_t bam_lplbuf_t;

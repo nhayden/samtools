@@ -27,9 +27,9 @@ DEALINGS IN THE SOFTWARE.  */
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-#include "htslib/faidx.h"
+#include <faidx.h>
 #include "sam.h"
-#include "htslib/kstring.h"
+#include <kstring.h>
 #include "kaln.h"
 #include "kprobaln.h"
 
@@ -49,7 +49,8 @@ void bam_fillmd1_core(bam1_t *b, char *ref, int flag, int max_nm)
     uint8_t *seq = bam1_seq(b);
     uint32_t *cigar = bam1_cigar(b);
     bam1_core_t *c = &b->core;
-    int i, x, y, u = 0;
+    int x, y, u = 0;
+    size_t i = 0;
     kstring_t *str;
     int32_t old_nm_i = -1, nm = 0;
 
@@ -144,11 +145,12 @@ void bam_fillmd1_core(bam1_t *b, char *ref, int flag, int max_nm)
         uint8_t *q = bam_aux_get(b, "RG");
         bam_aux_drop_other(b, q);
     }
+    int32_t il_qseq = 0;
     // reduce the resolution of base quality
     if (flag&BIN_QUAL) {
         uint8_t *qual = bam1_qual(b);
-        for (i = 0; i < b->core.l_qseq; ++i)
-            if (qual[i] >= 3) qual[i] = qual[i]/10*10 + 7;
+        for (il_qseq = 0; il_qseq < b->core.l_qseq; ++il_qseq)
+            if (qual[il_qseq] >= 3) qual[il_qseq] = qual[il_qseq]/10*10 + 7;
     }
 
     free(str->s); free(str);

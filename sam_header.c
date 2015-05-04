@@ -29,7 +29,7 @@ DEALINGS IN THE SOFTWARE.  */
 #include <stdlib.h>
 #include <stdarg.h>
 
-#include "htslib/khash.h"
+#include <khash.h>
 KHASH_MAP_INIT_STR(str, const char *)
 
 struct _HeaderList
@@ -164,7 +164,7 @@ static int tag_exists(const char *tag, const char **tags)
 //  newline character is stripped.
 static const char *nextline(char **lineptr, size_t *n, const char *text)
 {
-    int len;
+    size_t len;
     const char *to = text;
 
     if ( !*to ) return NULL;

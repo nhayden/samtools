@@ -27,11 +27,11 @@ DEALINGS IN THE SOFTWARE.  */
 #include <string.h>
 #include <assert.h>
 #include <unistd.h>
-#include "htslib/kstring.h"
+#include <kstring.h>
 #include "sam_header.h"
 #include "sam.h"
 #include "bam.h"
-#include "htslib/faidx.h"
+#include <faidx.h>
 
 bam_header_t *bam_header_dup(const bam_header_t *h0); /*in sam.c*/
 
@@ -166,7 +166,8 @@ int get_unpadded_len(faidx_t *fai, char *ref_name, int padded_len)
 
 static inline int * update_posmap(int *posmap, kstring_t ref)
 {
-    int i, k;
+    int k;
+    size_t i;
     posmap = realloc(posmap, ref.m * sizeof(int));
     for (i = k = 0; i < ref.l; ++i) {
         posmap[i] = k;
@@ -182,7 +183,8 @@ int bam_pad2unpad(samfile_t *in, samfile_t *out, faidx_t *fai)
     kstring_t r, q;
     int r_tid = -1;
     uint32_t *cigar2 = 0;
-    int ret = 0, n2 = 0, m2 = 0, *posmap = 0;
+    int ret = 0, *posmap = 0;
+    size_t n2 = 0, m2 = 0;
 
     b = bam_init1();
     r.l = r.m = q.l = q.m = 0; r.s = q.s = 0;
@@ -206,7 +208,7 @@ int bam_pad2unpad(samfile_t *in, samfile_t *out, faidx_t *fai)
                     return -1;
                 }
                 assert(r.l == q.l);
-                int i;
+                size_t i;
                 for (i = 0; i < r.l; ++i) {
                     if (r.s[i] != q.s[i]) {
                         // Show gaps as ASCII 45
@@ -222,7 +224,8 @@ int bam_pad2unpad(samfile_t *in, samfile_t *out, faidx_t *fai)
             replace_cigar(b, n2, cigar2);
             posmap = update_posmap(posmap, r);
         } else if (b->core.n_cigar > 0) {
-            int i, k, op;
+            int k, op;
+            size_t i;
             if (b->core.tid < 0) {
                 fprintf(stderr, "[depad] ERROR: Read '%s' has CIGAR but no RNAME\n", bam1_qname(b));
                 return -1;
@@ -347,6 +350,7 @@ int bam_pad2unpad(samfile_t *in, samfile_t *out, faidx_t *fai)
 
 bam_header_t * fix_header(bam_header_t *old, faidx_t *fai)
 {
+    (void) old, (void) fai;
 #if 0
     int i = 0, unpadded_len = 0;
     bam_header_t *header = 0 ;
@@ -407,6 +411,7 @@ bam_header_t * fix_header(bam_header_t *old, faidx_t *fai)
 #endif
 }
 
+#ifdef _MAIN /* Rsamtools */
 static int usage(int is_long_help);
 
 int main_pad2unpad(int argc, char *argv[])
@@ -511,3 +516,4 @@ static int usage(int is_long_help)
 \n");
     return 1;
 }
+#endif /* _MAIN */

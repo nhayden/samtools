@@ -32,7 +32,7 @@ DEALINGS IN THE SOFTWARE.  */
 
 typedef bam1_t *bam1_p;
 
-#include "htslib/khash.h"
+#include <khash.h>
 KHASH_SET_INIT_STR(name)
 KHASH_MAP_INIT_INT64(pos, bam1_p)
 
@@ -98,7 +98,7 @@ static void clear_best(khash_t(lib) *aux, int max)
     for (k = kh_begin(aux); k != kh_end(aux); ++k) {
         if (kh_exist(aux, k)) {
             lib_aux_t *q = &kh_val(aux, k);
-            if (kh_size(q->best_hash) >= max)
+            if (kh_size(q->best_hash) >= (khint_t) max)
                 kh_clear(pos, q->best_hash);
         }
     }

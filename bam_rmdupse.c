@@ -25,8 +25,8 @@ DEALINGS IN THE SOFTWARE.  */
 
 #include <math.h>
 #include "sam.h"
-#include "htslib/khash.h"
-#include "htslib/klist.h"
+#include <khash.h>
+#include <klist.h>
 
 #define QUEUE_CLEAR_SIZE 0x100000
 #define MAX_POS 0x7fffffff

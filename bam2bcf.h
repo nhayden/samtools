@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.  */
 #define BAM2BCF_H
 
 #include <stdint.h>
-#include <htslib/vcf.h>
+#include <vcf.h>
 #include "errmod.h"
 
 /**

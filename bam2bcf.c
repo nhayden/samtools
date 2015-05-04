@@ -27,9 +27,9 @@ DEALINGS IN THE SOFTWARE.  */
 #include <stdint.h>
 #include <assert.h>
 #include <float.h>
-#include <htslib/sam.h>
-#include <htslib/kstring.h>
-#include <htslib/kfunc.h>
+#include <sam.h>
+#include <kstring.h>
+#include <kfunc.h>
 #include "bam2bcf.h"
 #include "errmod.h"
 
@@ -679,6 +679,7 @@ int bcf_call_combine(int n, const bcf_callret1_t *calls, bcf_callaux_t *bca, int
 
 int bcf_call2bcf(bcf_call_t *bc, bcf1_t *rec, bcf_callret1_t *bcr, int fmt_flag, const bcf_callaux_t *bca, const char *ref)
 {
+    (void) bcr;
     extern double kt_fisher_exact(int n11, int n12, int n21, int n22, double *_left, double *_right, double *two);
     int i, j, nals = 1;
 

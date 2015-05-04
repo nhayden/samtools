@@ -25,7 +25,7 @@ DEALINGS IN THE SOFTWARE.  */
 
 #include <string.h>
 #include <unistd.h>
-#include "htslib/faidx.h"
+#include <faidx.h>
 #include "sam.h"
 
 int samthreads(samfile_t *fp, int n_threads, int n_sub_blks)

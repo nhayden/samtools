@@ -25,8 +25,8 @@ DEALINGS IN THE SOFTWARE.  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <htslib/hts.h>
-#include <htslib/sam.h>
+#include <hts.h>
+#include <sam.h>
 #include "bam_plbuf.h"
 
 /*****************

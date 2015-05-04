@@ -30,10 +30,10 @@ DEALINGS IN THE SOFTWARE.  */
 #include "bam2bcf.h"
 #include "kaln.h"
 #include "kprobaln.h"
-#include "htslib/khash.h"
+#include <khash.h>
 KHASH_SET_INIT_STR(rg)
 
-#include "htslib/ksort.h"
+#include <ksort.h>
 KSORT_INIT_GENERIC(uint32_t)
 
 #define MINUS_CONST 0x10000000
@@ -181,13 +181,15 @@ int bcf_call_gap_prep(int n, int *n_plp, bam_pileup1_t **plp, int pos, bcf_calla
     for (s = N = 0; s < n; ++s) N += n_plp[s]; // N is the total number of reads
     { // find out how many types of indels are present
         bca->max_support = bca->max_frac = 0;
-        int m, n_alt = 0, n_tot = 0, indel_support_ok = 0;
+        int m, n_tot = 0, indel_support_ok = 0;
+        uint32_t n_alt = 0;
         uint32_t *aux;
         aux = calloc(N + 1, 4);
         m = max_rd_len = 0;
         aux[m++] = MINUS_CONST; // zero indel is always a type
         for (s = 0; s < n; ++s) {
-            int na = 0, nt = 0;
+            uint32_t na = 0;
+            int nt = 0;
             for (i = 0; i < n_plp[s]; ++i) {
                 const bam_pileup1_t *p = plp[s] + i;
                 if (rghash == 0 || p->aux == 0) {

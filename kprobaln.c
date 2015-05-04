@@ -72,10 +72,13 @@ kpa_par_t kpa_par_alt = { 0.0001, 0.01, 10 };
 int kpa_glocal(const uint8_t *_ref, int l_ref, const uint8_t *_query, int l_query, const uint8_t *iqual,
 			   const kpa_par_t *c, int *state, uint8_t *q)
 {
-	double **f, **b = 0, *s, m[9], sI, sM, bI, bM, pb;
+        double **f, **b = 0, *s, m[9], sI, sM, bI, bM;
+#ifdef _MAIN
+        double pb;
+#endif
 	float *qual, *_qual;
 	const uint8_t *ref, *query;
-	int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
+	int bw, bw2, i, k, is_backward = 1, Pr;
 
     if ( l_ref<=0 || l_query<=0 ) return 0; // FIXME: this may not be an ideal fix, just prevents sefgault
 
@@ -214,9 +217,10 @@ int kpa_glocal(const uint8_t *_ref, int l_ref, const uint8_t *_query, int l_quer
 		    sum += e * b[1][u+0] * bM + EI * b[1][u+1] * bI;
 		}
 		set_u(k, bw, 0, 0);
+#ifdef _MAIN
 		pb = b[0][k] = sum / s[0]; // if everything works as is expected, pb == 1.0
+#endif
 	}
-	is_diff = fabs(pb - 1.) > 1e-7? 1 : 0;
 	/*** MAP ***/
 	for (i = 1; i <= l_query; ++i) {
 		double sum = 0., *fi = f[i], *bi = b[i], max = 0.;

@@ -26,9 +26,9 @@ DEALINGS IN THE SOFTWARE.  */
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include "htslib/kstring.h"
+#include <kstring.h>
 #include "bam.h"
-#include "htslib/kseq.h"
+#include <kseq.h>
 
 KSTREAM_INIT(gzFile, gzread, 16384)
 

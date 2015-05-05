@@ -24,6 +24,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.  */
 
+#include "../samtools_patch.h"
 #include <hts.h>
 #include <sam.h>
 #include <khash.h>
@@ -40,6 +41,7 @@ int bam_index_build2(const char *fn, const char *_fnidx)
     (void) fn, (void) _fnidx;
     fprintf(stderr, "Samtools-htslib-API: bam_index_build2() not yet implemented\n");
     abort();
+    return -1;
 }
 
 static void index_usage(FILE *fp)

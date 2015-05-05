@@ -27,6 +27,7 @@ DEALINGS IN THE SOFTWARE.  */
 #define BAM2BCF_H
 
 #include <stdint.h>
+#include "../samtools_patch.h"
 #include <vcf.h>
 #include "errmod.h"
 

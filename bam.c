@@ -26,6 +26,7 @@ DEALINGS IN THE SOFTWARE.  */
 #include <stdio.h>
 #include <ctype.h>
 #include <errno.h>
+#include "../samtools_patch.h"
 #include "bam.h"
 #include <kstring.h>
 #include "sam_header.h"
@@ -75,6 +76,7 @@ const char *bam_get_library(bam_header_t *h, const bam1_t *b)
     fprintf(stderr, "Samtools-htslib-API: bam_get_library() not yet implemented\n");
     abort();
 #endif
+    return NULL;
 }
 
 int bam_fetch(bamFile fp, const bam_index_t *idx, int tid, int beg, int end, void *data, bam_fetch_f func)

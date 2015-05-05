@@ -36,6 +36,7 @@ DEALINGS IN THE SOFTWARE.  */
 #include <khash.h>
 #include <klist.h>
 #include <kstring.h>
+#include "../samtools_patch.h"
 #include <sam.h>
 
 #if !defined(__DARWIN_C_LEVEL) || __DARWIN_C_LEVEL < 900000L

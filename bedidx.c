@@ -30,9 +30,10 @@ DEALINGS IN THE SOFTWARE.  */
 #include <errno.h>
 #include <zlib.h>
 
-#ifdef _WIN32
+/* Rsamtools: Rhtslib's ksort.h already provides replacement */
+/* #ifdef _WIN32
 #define drand48() ((double)rand() / RAND_MAX)
-#endif
+#endif */
 
 #include <ksort.h>
 KSORT_INIT_GENERIC(uint64_t)

@@ -28,6 +28,7 @@ DEALINGS IN THE SOFTWARE.  */
 #include <assert.h>
 #include <unistd.h>
 #include <kstring.h>
+#include "../samtools_patch.h"
 #include "sam_header.h"
 #include "sam.h"
 #include "bam.h"
@@ -409,6 +410,7 @@ bam_header_t * fix_header(bam_header_t *old, faidx_t *fai)
     fprintf(stderr, "Samtools-htslib: fix_header() header parsing not yet implemented\n");
     abort();
 #endif
+    return NULL;
 }
 
 #ifdef _MAIN /* Rsamtools */

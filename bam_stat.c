@@ -75,6 +75,8 @@ bam_flagstat_t *bam_flagstat_core(bamFile fp)
         fprintf(stderr, "[bam_flagstat_core] Truncated file? Continue anyway.\n");
     return s;
 }
+
+#ifdef _MAIN /* Rsamtools */
 int bam_flagstat(int argc, char *argv[])
 {
     bamFile fp;
@@ -109,3 +111,4 @@ int bam_flagstat(int argc, char *argv[])
     bam_close(fp);
     return 0;
 }
+#endif /* _MAIN */

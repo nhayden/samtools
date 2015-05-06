@@ -507,6 +507,7 @@ static int usage(int is_long_help)
     return 1;
 }
 
+#ifdef _MAIN /* Rsamtools */
 int main_import(int argc, char *argv[])
 {
     int argc2, ret;
@@ -522,9 +523,11 @@ int main_import(int argc, char *argv[])
     free(argv2);
     return ret;
 }
+#endif /* _MAIN */
 
 int8_t seq_comp_table[16] = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
 
+#ifdef _MAIN /* Rsamtools */
 static void bam2fq_usage(FILE *to)
 {
     fprintf(to, "\nUsage:   samtools bam2fq [-nO] [-s <outSE.fq>] <in.bam>\n\n");
@@ -704,3 +707,4 @@ int main_bam2fq(int argc, char *argv[])
     check_sam_close(fp, argv[optind], "file", &status);
     return status;
 }
+#endif /* _MAIN */
